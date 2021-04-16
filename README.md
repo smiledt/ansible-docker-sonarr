@@ -19,7 +19,7 @@ This is the name of the container.
 
     sonarr_image: linuxserver/sonarr
 
-The image container. By default this pulls from linuxserver.
+The image container. By default this pulls from linuxserver.io.
 
     sonarr_ports:
      - 8989:8989
