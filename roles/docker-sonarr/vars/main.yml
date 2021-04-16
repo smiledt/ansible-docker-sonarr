@@ -1,7 +1,7 @@
 ---
 
 sonarr_name: sonarr
-sonarr_image: linuxserver/sonarr:preview
+sonarr_image: linuxserver/sonarr
 sonarr_ports:
   - 8989:8989
   - 9898:9898
