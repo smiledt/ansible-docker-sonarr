@@ -1,0 +1,16 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  pre_tasks:
+    - name: Install dependencies
+      apk:
+        name: g++,gcc,libxslt-dev,python2-dev
+        update_cache: true
+  vars:
+    pip_install_packages:
+      - name: docker
+      - name: lxml
+  roles:
+    # - calvinbui.ansible_docker
+    - calvinbui.ansible_pip

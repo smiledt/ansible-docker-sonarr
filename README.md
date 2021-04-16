@@ -1,29 +1,63 @@
-NFS-Client
+Docker-Sonarr
 =========
 
-A small role to mount NFS shares on my Linux virtual machines. 
+A role to spin up a Sonarr docker container. This role was heavily inspired by (and all credit goes to) Calvin Bui's role. Find this role [here](https://github.com/calvinbui/ansible-sonarr-docker).This is only being published for integration into my AWX instance. 
 
 Requirements
 ------------
 
-You need to have a NFS share on the network, and the ability to mount it via dns or IP address. 
+Docker needs to be installed and configured on the server. 
 
 Role Variables
 --------------
 
-Required variables are listed here, along with default values (specific to my environment, see fefaults/main.yml).
+Required variables are listed here, along with default example values. Any of these defaults can be overwritten by using the vars role directory. 
 
-    mnt_path: /mnt/storage
+    sonarr_name: sonarr
 
-This is the local directory on the host. If this directory does not exist, it will be created during runtime.
+This is the name of the container. 
 
-    nfs_host: nas.domain.com
+    sonarr_image: linuxserver/sonarr
 
-This is the address of the NFS server. This can either be a resolvable FQDN or an IP address.
+The image container. By default this pulls from linuxserver.
 
-    share_path: /mnt/1tb_mirror
+    sonarr_ports:
+     - 8989:8989
+     - 9898:9898
 
-This is the exported NFS share on the server.  
+These are the exported ports of the container.
+
+    sonarr_config_directory: /opt/sonarr
+
+This is the directory that config files will be stored. This is mapped to /config in the container. 
+
+    sonarr_tv_directory: /tmp/tv
+
+This is the directory that Sonarr will move TV shows and managed files to. Usually we want this directory on some sort of media network storage. This is mapped to /tv inside the container.
+
+    sonarr_download_directory: /tmp/downloads
+
+This is where files will be placed for Sonarr to managed, either via a download client or manually. This is mapped to /completed inside the container.
+
+    sonarr_environment_variables:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: America/Chicago
+
+This is a dictionary of extra environment variables for the container. 
+
+    sonarr_docker_additional_options:
+      restart_policy: unless-stopped
+
+Another dictionary, this time of additional options for the container. By default, this sets the container to start on boot unless it was previously stopped. 
+
+    sonarr_config:
+      ApiKey: "abc123"
+      UrlBase: "example.com"
+      LaunchBrowser: "False"
+      AnalyticsEnabled: "False"
+
+This is not currenlty in use - the applicable code is commented out in the task. 
 
 Dependencies
 ------------
