@@ -57,7 +57,7 @@ Another dictionary, this time of additional options for the container. By defaul
       LaunchBrowser: "False"
       AnalyticsEnabled: "False"
 
-This is not currenlty in use - the applicable code is commented out in the task. 
+This is not currently in use - the applicable code is commented out in the task. 
 
 Dependencies
 ------------
@@ -67,14 +67,11 @@ None.
 Example Playbook
 ----------------
 
-    - name: Connect the vm to the Media share on my TrueNAS vm.
-      hosts: nfs_client_media
+    - name: Deploy the Sonarr Container.
+      hosts: rr
       become: true
-      vars:
-        nfs_mounts:
-          - { mnt_path: "/mnt/media", nfs_host: "truenas.plumbus.lab", share_path: "/mnt/Media" }
       roles:
-      - role: nfs_client
+      - role: docker-sonarr
 
 License
 -------
