@@ -11,7 +11,7 @@ Docker needs to be installed and configured on the server.
 Role Variables
 --------------
 
-Required variables are listed here, along with default example values. Any of these defaults can be overwritten by using the vars role directory. 
+Required variables are listed here, along with default example values. See defaults/main.yml. Any of these defaults can be overwritten by using the vars role directory. 
 
     sonarr_name: sonarr
 
