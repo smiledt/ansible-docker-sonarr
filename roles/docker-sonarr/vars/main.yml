@@ -9,8 +9,8 @@ sonarr_config_directory: /opt/sonarr
 sonarr_tv_directory: /mnt/media/tv
 sonarr_download_directory: /mnt/media/downloads
 sonarr_environment_variables:
-  PUID: "1000"
-  PGID: "1000"
+  PUID: "{{ media_uid }}"
+  PGID: "{{ media_gid }}"
   TZ: America/Chicago
 
 sonarr_docker_additional_options:
@@ -21,3 +21,8 @@ sonarr_config:
   UrlBase: "example.com"
   LaunchBrowser: "False"
   AnalyticsEnabled: "False"
+
+media_user: mediasvc
+media_uid: 1099
+media_group: media
+media_gid: 1099
